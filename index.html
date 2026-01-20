@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bird Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🐦 My Bird Tracker</h1>
+        
+        <div class="nav-buttons">
+            <button class="nav-btn active" id="addBtn">Add Bird</button>
+            <button class="nav-btn" id="listBtn">My Birds</button>
+        </div>
+        
+        <div class="screen" id="addScreen">
+            <div class="form-section">
+                <h2>Add a Bird Sighting</h2>
+                <form id="birdForm">
+                    <label for="birdName">Bird Name:</label>
+                    <input type="text" id="birdName" required>
+                    
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" required>
+                    
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" required>
+                    
+                    <label for="photo">Photo:</label>
+                    <input type="file" id="photo" accept="image/*" capture="environment">
+                    
+                    <button type="submit">Save Bird</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="screen hidden" id="listScreen">
+            <div class="birds-section">
+                <h2>My Bird Sightings</h2>
+                <div id="birdList"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
