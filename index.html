@@ -20,8 +20,27 @@
                 <h2>Add a Bird Sighting</h2>
                 <form id="birdForm">
                     <label for="birdName">Bird Name:</label>
-                    <input type="text" id="birdName" required>
-                    
+                <select id="birdName" required>
+                    <option value="">Choose a bird...</option>
+                    <option value="Robin">Robin</option>
+                    <option value="Blue Jay">Blue Jay</option>
+                    <option value="Cardinal">Cardinal</option>
+                    <option value="Sparrow">Sparrow</option>
+                    <option value="Goldfinch">Goldfinch</option>
+                    <option value="Pigeon">Pigeon</option>
+                    <option value="Crow">Crow</option>
+                    <option value="Woodpecker">Woodpecker</option>
+                    <option value="Seagull">Seagull</option>
+                    <option value="Parrot">Parrot</option>
+                    <option value="Owl">Owl</option>
+                    <option value="Hummingbird">Hummingbird</option>
+                    <option value="Other">Other (type below)</option>
+                </select>
+                <input type="text" id="otherBird" placeholder="Type bird name if 'Other'" style="margin-top: 10px; display: none;">
+                
+                <div id="birdPreview" style="text-align: center; margin-top: 15px; display: none;">
+                    <img id="birdImage" src="" alt="Bird" style="max-width: 200px; border-radius: 10px;">
+                </div>
                     <label for="location">Location:</label>
                     <input type="text" id="location" required>
                     

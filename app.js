@@ -1,3 +1,4 @@
+
 // Get the form and bird list elements
 const form = document.getElementById('birdForm');
 const birdList = document.getElementById('birdList');
@@ -31,11 +32,42 @@ window.addEventListener('load', () => {
     document.getElementById('date').valueAsDate = new Date();
 });
 
+// Show/hide other bird input
+const birdNameSelect = document.getElementById('birdName');
+const otherBirdInput = document.getElementById('otherBird');
+const birdPreview = document.getElementById('birdPreview');
+const birdImage = document.getElementById('birdImage');
+
+birdNameSelect.addEventListener('change', () => {
+    if (birdNameSelect.value === 'Other') {
+        otherBirdInput.style.display = 'block';
+        otherBirdInput.required = true;
+        birdPreview.style.display = 'none';
+    } else if (birdNameSelect.value === '') {
+        otherBirdInput.style.display = 'none';
+        otherBirdInput.required = false;
+        otherBirdInput.value = '';
+        birdPreview.style.display = 'none';
+    } else {
+        otherBirdInput.style.display = 'none';
+        otherBirdInput.required = false;
+        otherBirdInput.value = '';
+        
+        // Show bird picture
+        const birdFileName = birdNameSelect.value.toLowerCase().replace(' ', '');
+        birdImage.src = `bird-images/${birdFileName}.svg`;
+        birdPreview.style.display = 'block';
+    }
+});
+
 // Save a new bird when the form is submitted
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     
-    const birdName = document.getElementById('birdName').value;
+    let birdName = document.getElementById('birdName').value;
+    if (birdName === 'Other') {
+        birdName = document.getElementById('otherBird').value;
+    }
     const location = document.getElementById('location').value;
     const date = document.getElementById('date').value;
     const photoInput = document.getElementById('photo');
@@ -102,15 +134,23 @@ function displayBirds() {
     // Sort birds by date (newest first)
     birds.sort((a, b) => new Date(b.date) - new Date(a.date));
     
-    birdList.innerHTML = birds.map(bird => `
+    birdList.innerHTML = birds.map(bird => {
+        // Check if there's a matching bird picture
+        const birdFileName = bird.name.toLowerCase().replace(' ', '');
+        const knownBirds = ['robin', 'bluejay', 'cardinal', 'sparrow', 'goldfinch', 'pigeon', 'crow', 'woodpecker', 'seagull', 'parrot', 'owl', 'hummingbird', 'kingfisher', 'magpie'];
+        const hasBirdImage = knownBirds.includes(birdFileName);
+        
+        return `
         <div class="bird-card">
+            ${hasBirdImage ? `<img src="bird-images/${birdFileName}.svg" alt="${bird.name}" style="max-width: 150px; float: right; margin-left: 10px;">` : ''}
             <h3>🐦 ${bird.name}</h3>
             <p><strong>Location:</strong> ${bird.location}</p>
             <p><strong>Date:</strong> ${formatDate(bird.date)}</p>
-            ${bird.photo ? `<img src="${bird.photo}" alt="${bird.name}">` : ''}
+            ${bird.photo ? `<img src="${bird.photo}" alt="${bird.name}" style="clear: both;">` : ''}
             <button class="delete-btn" onclick="deleteBird(${bird.id})">Delete</button>
         </div>
-    `).join('');
+    `;
+    }).join('');
 }
 
 // Delete a bird
