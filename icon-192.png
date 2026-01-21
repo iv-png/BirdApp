@@ -1,0 +1,8 @@
+<svg width="192" height="192" xmlns="http://www.w3.org/2000/svg">
+  <rect width="192" height="192" fill="#4caf50" rx="20"/>
+  <circle cx="96" cy="70" r="35" fill="white"/>
+  <circle cx="80" cy="60" r="8" fill="black"/>
+  <polygon points="50,70 30,80 50,90" fill="orange"/>
+  <circle cx="96" cy="110" r="40" fill="#81c784"/>
+  <text x="96" y="175" font-size="24" text-anchor="middle" fill="white" font-weight="bold">Bird Tracker</text>
+</svg>
