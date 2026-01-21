@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bird-tracker-v1';
+const CACHE_NAME = 'bird-tracker-v2';
 const urlsToCache = [
   '/BirdApp/',
   '/BirdApp/index.html',
